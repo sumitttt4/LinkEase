@@ -62,7 +62,7 @@ const WhyChoose = () => {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section id="features" className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-5xl font-extrabold text-center text-gray-900 mb-4 tracking-tight font-noto-serif">
           Why Choose LinkEase?

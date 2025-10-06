@@ -16,7 +16,7 @@ const OrganizedLinks = () => {
   ];
 
   return (
-    <section className="py-24" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FEF5F5 100%)' }}>
+    <section id="preview" className="py-24" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #FEF5F5 100%)' }}>
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-5xl font-extrabold text-center text-gray-900 mb-4 tracking-tight font-noto-serif">
           Your Links, Beautifully Organized

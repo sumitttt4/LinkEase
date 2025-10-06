@@ -4,7 +4,7 @@ import DashboardPreview from './DashboardPreview';
 
 const Hero = () => {
   return (
-    <section className="py-16 pb-20 text-center relative overflow-hidden">
+    <section id="home" className="py-16 pb-20 text-center relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-[-200px] right-[-200px] w-[500px] h-[500px] rounded-full opacity-20 pointer-events-none" 
            style={{ background: 'radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%)' }}></div>
