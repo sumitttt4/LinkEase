@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import DashboardPreview from './DashboardPreview';
 
 const Hero = () => {
@@ -34,14 +35,14 @@ const Hero = () => {
         </p>
         
         <div className="flex gap-4 justify-center mb-16">
-          <button className="group bg-gray-900 text-white px-8 py-4 rounded-xl text-sm font-semibold hover:bg-gray-800 shadow-custom-md hover:shadow-custom-xl hover:-translate-y-1 transition-all duration-300 active:scale-95">
+          <Link to="/signup" className="group bg-gray-900 text-white px-8 py-4 rounded-xl text-sm font-semibold hover:bg-gray-800 shadow-custom-md hover:shadow-custom-xl hover:-translate-y-1 transition-all duration-300 active:scale-95">
             <span className="flex items-center gap-2">
               Try for Free
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </span>
-          </button>
+          </Link>
           <button className="group bg-white text-gray-900 border-2 border-gray-200 px-8 py-4 rounded-xl text-sm font-semibold hover:bg-gray-50 hover:border-gray-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 active:scale-95">
             <span className="flex items-center gap-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
