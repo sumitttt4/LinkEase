@@ -12,8 +12,8 @@ const Hero = () => {
            style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%)' }}></div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 px-5 py-2.5 rounded-full text-sm text-gray-700 mb-8 shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer group animate-float">
-          <span className="text-base animate-pulse">✨</span>
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 px-5 py-2.5 rounded-full text-sm text-gray-700 mb-8 shadow-md hover:">
+          <span className="text-base animate-pulse">🟢</span>
           <span className="font-medium">New: <span className="font-semibold text-primary-purple">AI-powered</span> link categorization</span>
           <svg className="w-4 h-4 text-primary-purple group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -22,7 +22,7 @@ const Hero = () => {
         
         <h1 className="text-6xl font-extrabold leading-tight mb-6 tracking-tight">
           <span className="font-noto-serif">All Your</span> <span className="font-caveat gradient-text text-7xl">Links.</span><br />
-          <span className="font-noto-serif gradient-text-blue">One Clean Dashboard.</span>
+          <span className="font-noto-serif gradient-text-blue">in One Clean Dashboard.</span>
         </h1>
         
         <p className="text-lg text-gray-600 mb-4 leading-relaxed">
