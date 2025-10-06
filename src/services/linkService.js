@@ -15,9 +15,8 @@ import { db } from '../firebase/config';
 // Add a new link
 export const addLink = async (userId, linkData) => {
   try {
-    const docRef = await addDoc(collection(db, 'links'), {
+    const docRef = await addDoc(collection(db, 'users', userId, 'links'), {
       ...linkData,
-      userId,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     });
@@ -32,21 +31,15 @@ export const addLink = async (userId, linkData) => {
 export const getUserLinks = async (userId) => {
   try {
     const q = query(
-      collection(db, 'links'),
-      where('userId', '==', userId)
+      collection(db, 'users', userId, 'links'),
+      orderBy('createdAt', 'desc')
     );
     const querySnapshot = await getDocs(q);
     const links = querySnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
     }));
-    
-    // Sort by createdAt on client side
-    return links.sort((a, b) => {
-      const dateA = a.createdAt?.toDate?.() || new Date(0);
-      const dateB = b.createdAt?.toDate?.() || new Date(0);
-      return dateB - dateA; // Newest first
-    });
+    return links;
   } catch (error) {
     console.error('Error getting links:', error);
     console.error('Error details:', error.message);
@@ -55,9 +48,9 @@ export const getUserLinks = async (userId) => {
 };
 
 // Update a link
-export const updateLink = async (linkId, linkData) => {
+export const updateLink = async (userId, linkId, linkData) => {
   try {
-    const linkRef = doc(db, 'links', linkId);
+    const linkRef = doc(db, 'users', userId, 'links', linkId);
     await updateDoc(linkRef, {
       ...linkData,
       updatedAt: serverTimestamp()
@@ -69,9 +62,9 @@ export const updateLink = async (linkId, linkData) => {
 };
 
 // Delete a link
-export const deleteLink = async (linkId) => {
+export const deleteLink = async (userId, linkId) => {
   try {
-    await deleteDoc(doc(db, 'links', linkId));
+    await deleteDoc(doc(db, 'users', userId, 'links', linkId));
   } catch (error) {
     console.error('Error deleting link:', error);
     throw error;

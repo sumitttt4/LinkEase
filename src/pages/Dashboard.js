@@ -67,7 +67,7 @@ const Dashboard = () => {
 
   const handleUpdateLink = async (linkId, linkData) => {
     try {
-      await updateLink(linkId, linkData);
+      await updateLink(user.uid, linkId, linkData);
       setLinks(links.map(link => link.id === linkId ? { ...link, ...linkData } : link));
       setIsModalOpen(false);
       setEditingLink(null);
@@ -82,7 +82,7 @@ const Dashboard = () => {
     if (!window.confirm('Are you sure you want to delete this link?')) return;
     
     try {
-      await deleteLink(linkId);
+      await deleteLink(user.uid, linkId);
       setLinks(links.filter(link => link.id !== linkId));
       toast.success('Link deleted successfully!');
     } catch (error) {
