@@ -111,16 +111,18 @@ const Dashboard = () => {
 
   const categoryStats = getCategoryStats();
 
-  // Category colors mapping
+  // Category colors mapping - vibrant warm colors
   const categoryColors = {
-    'Work Projects': { bg: 'bg-blue-50', text: 'text-blue-600', icon: 'text-blue-500' },
-    'Design Resources': { bg: 'bg-purple-50', text: 'text-purple-600', icon: 'text-purple-500' },
+    'Work Projects': { bg: 'bg-orange-50', text: 'text-orange-600', icon: 'text-orange-500' },
+    'Design Resources': { bg: 'bg-pink-50', text: 'text-pink-600', icon: 'text-pink-500' },
     'Learning': { bg: 'bg-green-50', text: 'text-green-600', icon: 'text-green-500' },
-    'Personal': { bg: 'bg-pink-50', text: 'text-pink-600', icon: 'text-pink-500' },
-    'Development': { bg: 'bg-indigo-50', text: 'text-indigo-600', icon: 'text-indigo-500' },
-    'Design': { bg: 'bg-purple-50', text: 'text-purple-600', icon: 'text-purple-500' },
-    'Dev': { bg: 'bg-violet-50', text: 'text-violet-600', icon: 'text-violet-500' },
+    'Personal': { bg: 'bg-rose-50', text: 'text-rose-600', icon: 'text-rose-500' },
+    'Development': { bg: 'bg-teal-50', text: 'text-teal-600', icon: 'text-teal-500' },
+    'Design': { bg: 'bg-fuchsia-50', text: 'text-fuchsia-600', icon: 'text-fuchsia-500' },
+    'Dev': { bg: 'bg-emerald-50', text: 'text-emerald-600', icon: 'text-emerald-500' },
     'CSS': { bg: 'bg-cyan-50', text: 'text-cyan-600', icon: 'text-cyan-500' },
+    'Work': { bg: 'bg-amber-50', text: 'text-amber-600', icon: 'text-amber-500' },
+    'Uncategorized': { bg: 'bg-gray-50', text: 'text-gray-600', icon: 'text-gray-500' },
   };
 
   const getColorForCategory = (category) => {
@@ -135,7 +137,7 @@ const Dashboard = () => {
   const recentLinks = [...filteredLinks].slice(0, 10);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50/30 to-green-50/20">
       <Header 
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
@@ -144,7 +146,7 @@ const Dashboard = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
           <div className="flex items-center justify-center h-64">
-            <Loader className="animate-spin text-indigo-500" size={40} />
+            <Loader className="animate-spin text-orange-500" size={40} />
           </div>
         ) : links.length === 0 ? (
           // Empty State
@@ -178,7 +180,7 @@ const Dashboard = () => {
                     setEditingLink(null);
                     setIsModalOpen(true);
                   }}
-                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-all"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white px-4 py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-pink-600 transition-all shadow-md hover:shadow-lg"
                 >
                   <Plus size={18} />
                   Add Link
@@ -193,7 +195,7 @@ const Dashboard = () => {
                       key={category}
                       onClick={() => setSelectedCategory(category)}
                       className={`${colors.bg} rounded-2xl p-6 text-left transition-all hover:scale-105 hover:shadow-lg border-2 ${
-                        selectedCategory === category ? 'border-indigo-400 shadow-lg' : 'border-transparent'
+                        selectedCategory === category ? 'border-orange-400 shadow-lg' : 'border-transparent'
                       }`}
                     >
                       <div className="flex items-start gap-4">
@@ -222,7 +224,7 @@ const Dashboard = () => {
                 {selectedCategory !== 'all' && (
                   <button
                     onClick={() => setSelectedCategory('all')}
-                    className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+                    className="text-sm text-orange-600 hover:text-orange-700 font-medium"
                   >
                     View all
                   </button>
@@ -240,7 +242,7 @@ const Dashboard = () => {
                     return (
                       <div
                         key={link.id}
-                        className="group flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:border-indigo-300 hover:shadow-md transition-all bg-white"
+                        className="group flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:border-orange-300 hover:shadow-md transition-all bg-white"
                       >
                         {/* Icon */}
                         <div className={`flex-shrink-0 w-12 h-12 ${colors.bg} rounded-xl flex items-center justify-center ${colors.icon}`}>
@@ -271,7 +273,7 @@ const Dashboard = () => {
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                            className="p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
                             onClick={(e) => e.stopPropagation()}
                           >
                             <ExternalLink size={18} />

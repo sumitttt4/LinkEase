@@ -26,7 +26,7 @@ const Header = ({ searchTerm, onSearchChange }) => {
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
               LinkEase
             </h1>
           </div>
@@ -40,7 +40,7 @@ const Header = ({ searchTerm, onSearchChange }) => {
                 placeholder="Search links..."
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
               />
             </div>
           </div>
@@ -51,7 +51,7 @@ const Header = ({ searchTerm, onSearchChange }) => {
               onClick={() => setShowDropdown(!showDropdown)}
               className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-xl transition-colors"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">
                 {user?.displayName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || 'U'}
               </div>
               <div className="hidden md:block text-left">
