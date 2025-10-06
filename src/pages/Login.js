@@ -59,23 +59,21 @@ const Login = () => {
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-pink-50/30 to-rose-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* Logo & Header */}
-        <div className="text-center mb-8">
-          <Link to="/" className="inline-block mb-6">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-              LinkEase
-            </h1>
+        <div className="text-center mb-6 sm:mb-8">
+          <Link to="/" className="inline-block mb-4 sm:mb-6">
+          
           </Link>
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h2>
-          <p className="text-gray-600">Sign in to continue to your dashboard</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Welcome back</h2>
+          <p className="text-sm sm:text-base text-gray-600">Sign in to continue to your dashboard</p>
         </div>
 
         {/* Login Card */}
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 mb-6">
+        <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-8 mb-4 sm:mb-6">
           {/* Google Sign In - Featured */}
           <button
             onClick={handleGoogleSignIn}
             disabled={loading}
-            className="w-full bg-white border-2 border-gray-200 text-gray-700 py-3.5 rounded-xl font-semibold hover:bg-gray-50 hover:border-gray-300 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 mb-6 group"
+            className="w-full bg-white border-2 border-gray-200 text-gray-700 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-semibold hover:bg-gray-50 hover:border-gray-300 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 sm:gap-3 mb-5 sm:mb-6 group"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -83,21 +81,21 @@ const Login = () => {
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
             </svg>
-            <span>Continue with Google</span>
+            <span className="text-sm sm:text-base">Continue with Google</span>
           </button>
 
           {/* Divider */}
-          <div className="relative my-6">
+          <div className="relative my-5 sm:my-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-200"></div>
             </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-gray-500 font-medium">Or continue with email</span>
+            <div className="relative flex justify-center text-xs sm:text-sm">
+              <span className="px-3 sm:px-4 bg-white text-gray-500 font-medium">Or continue with email</span>
             </div>
           </div>
 
           {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
             {/* Email */}
             <div>
               <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -110,7 +108,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                  className="w-full pl-11 sm:pl-12 pr-4 py-3 sm:py-3.5 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
                   placeholder="Enter your email"
                   disabled={loading}
                 />
@@ -137,7 +135,7 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-12 pr-12 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                  className="w-full pl-11 sm:pl-12 pr-11 sm:pr-12 py-3 sm:py-3.5 border-2 border-gray-200 rounded-xl text-sm sm:text-base focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
                   placeholder="Enter your password"
                   disabled={loading}
                 />
@@ -155,7 +153,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white py-3.5 rounded-xl font-semibold hover:from-orange-600 hover:to-pink-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-orange-200 hover:shadow-xl hover:shadow-orange-300"
+              className="w-full bg-gray-900 text-white py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-semibold hover:bg-gray-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
             >
               {loading ? (
                 <>
@@ -174,9 +172,9 @@ const Login = () => {
 
         {/* Sign Up Link */}
         <div className="text-center">
-          <p className="text-gray-600">
+          <p className="text-gray-600 text-sm sm:text-base">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-orange-600 font-semibold hover:text-orange-700 transition-colors">
+            <Link to="/signup" className="text-gray-900 font-semibold hover:text-gray-700 transition-colors">
               Create account
             </Link>
           </p>

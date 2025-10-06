@@ -9,7 +9,6 @@ import WhyChoose from './components/WhyChoose';
 import OrganizedLinks from './components/OrganizedLinks';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
-import ThemeToggle from './components/ThemeToggle';
 
 // Auth Pages
 import Login from './pages/Login';
@@ -28,7 +27,6 @@ const LandingPage = () => (
     <OrganizedLinks />
     <CTA />
     <Footer />
-    <ThemeToggle />
   </div>
 );
 

@@ -54,29 +54,22 @@ const WhyChoose = () => {
 
   const smallFeatures = [];
 
-  const stats = [
-    { number: '10,000+', label: 'Active Users' },
-    { number: '500K+', label: 'Links Organized' },
-    { number: '99.9%', label: 'Uptime' },
-    { number: '24/7', label: 'Support' },
-  ];
-
   return (
-    <section id="features" className="py-20 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-5xl font-extrabold text-center text-gray-900 mb-4 tracking-tight font-noto-serif">
+    <section id="features" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-3 sm:mb-4 tracking-tight font-noto-serif">
           Why Choose LinkEase?
         </h2>
-        <p className="text-lg text-center text-gray-600 mb-16">
+        <p className="text-base sm:text-lg text-center text-gray-600 mb-10 sm:mb-12 lg:mb-16">
           Powerful features designed to simplify your digital workflow
         </p>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 gap-8 mb-16">
+        <div className="grid grid-cols-1 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {bentoFeatures.map((feature, index) => (
             <div 
               key={index}
-              className={`${feature.bgColor} rounded-3xl p-12 transition-all duration-500 hover:shadow-layered cursor-pointer group relative overflow-hidden`}
+              className={`${feature.bgColor} rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 transition-all duration-500 hover:shadow-layered cursor-pointer group relative overflow-hidden`}
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -93,34 +86,34 @@ const WhyChoose = () => {
                 }}
               ></div>
               
-              <div className="grid grid-cols-2 gap-12 items-center relative z-10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center relative z-10">
                 {/* Left Content */}
-                <div className={index % 2 === 1 ? 'order-2' : ''}>
-                  <span className="text-xs font-bold text-purple-600 tracking-widest mb-3 block uppercase">
+                <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                  <span className="text-xs font-bold text-purple-600 tracking-widest mb-2 sm:mb-3 block uppercase">
                     {feature.tag}
                   </span>
-                  <h3 className="text-4xl font-bold text-gray-900 mb-5 leading-tight tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-5 leading-tight tracking-tight">
                     {feature.title}
                   </h3>
-                  <p className="text-base text-gray-700 mb-9 leading-relaxed" style={{ lineHeight: '1.7' }}>
+                  <p className="text-sm sm:text-base text-gray-700 mb-6 sm:mb-8 lg:mb-9 leading-relaxed" style={{ lineHeight: '1.7' }}>
                     {feature.description}
                   </p>
-                  <div className="space-y-3.5">
+                  <div className="space-y-2.5 sm:space-y-3.5">
                     {feature.bullets.map((bullet, idx) => (
                       <div 
                         key={idx} 
-                        className="flex items-start gap-3.5 opacity-0 animate-scale-in"
+                        className="flex items-start gap-2.5 sm:gap-3.5 opacity-0 animate-scale-in"
                         style={{ animationDelay: `${idx * 0.15}s`, animationFillMode: 'forwards' }}
                       >
-                        <span className="text-xl flex-shrink-0 leading-none">{bullet.icon}</span>
-                        <span className="text-sm text-gray-800 leading-relaxed" style={{ lineHeight: '1.6' }}>{bullet.text}</span>
+                        <span className="text-lg sm:text-xl flex-shrink-0 leading-none">{bullet.icon}</span>
+                        <span className="text-xs sm:text-sm text-gray-800 leading-relaxed" style={{ lineHeight: '1.6' }}>{bullet.text}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Right Illustration */}
-                <div className={`flex items-center justify-center ${index % 2 === 1 ? 'order-1 illustration-shift-left' : 'illustration-shift-right'}`}>
+                <div className={`flex items-center justify-center mt-6 lg:mt-0 ${index % 2 === 1 ? 'lg:order-1 illustration-shift-left' : 'illustration-shift-right'}`}>
                   {feature.illustration === 'organize' ? (
                     <div className="relative w-full h-80 flex items-center justify-center">
                       {/* Phone with purple eye - Enhanced */}
@@ -241,21 +234,6 @@ const WhyChoose = () => {
                   )}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-4 gap-12">
-          {stats.map((stat, index) => (
-            <div 
-              key={index} 
-              className="text-center group cursor-pointer"
-            >
-              <h3 className="text-5xl font-extrabold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">
-                {stat.number}
-              </h3>
-              <p className="text-base text-gray-600">{stat.label}</p>
             </div>
           ))}
         </div>
