@@ -3,11 +3,8 @@ import { useAuth } from '../contexts/AuthContext';
 import { getUserLinks, addLink, updateLink, deleteLink, searchLinks, filterByCategory } from '../services/linkService';
 import toast from 'react-hot-toast';
 import Header from '../components/dashboard/Header';
-import Sidebar from '../components/dashboard/Sidebar';
-import LinkCard from '../components/dashboard/LinkCard';
 import AddLinkModal from '../components/dashboard/AddLinkModal';
-import EmptyState from '../components/dashboard/EmptyState';
-import { Plus, Loader } from 'lucide-react';
+import { Plus, Loader, Folder, ExternalLink, Edit2, Trash2 } from 'lucide-react';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -18,7 +15,6 @@ const Dashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingLink, setEditingLink] = useState(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Load links
   useEffect(() => {
@@ -103,72 +99,205 @@ const Dashboard = () => {
   const categories = ['all', ...new Set(links.map(link => link.category).filter(Boolean))];
   const allTags = [...new Set(links.flatMap(link => link.tags || []))];
 
+  // Get category stats
+  const getCategoryStats = () => {
+    const stats = {};
+    links.forEach(link => {
+      const category = link.category || 'Uncategorized';
+      stats[category] = (stats[category] || 0) + 1;
+    });
+    return stats;
+  };
+
+  const categoryStats = getCategoryStats();
+
+  // Category colors mapping
+  const categoryColors = {
+    'Work Projects': { bg: 'bg-blue-50', text: 'text-blue-600', icon: 'text-blue-500' },
+    'Design Resources': { bg: 'bg-purple-50', text: 'text-purple-600', icon: 'text-purple-500' },
+    'Learning': { bg: 'bg-green-50', text: 'text-green-600', icon: 'text-green-500' },
+    'Personal': { bg: 'bg-pink-50', text: 'text-pink-600', icon: 'text-pink-500' },
+    'Development': { bg: 'bg-indigo-50', text: 'text-indigo-600', icon: 'text-indigo-500' },
+    'Design': { bg: 'bg-purple-50', text: 'text-purple-600', icon: 'text-purple-500' },
+    'Dev': { bg: 'bg-violet-50', text: 'text-violet-600', icon: 'text-violet-500' },
+    'CSS': { bg: 'bg-cyan-50', text: 'text-cyan-600', icon: 'text-cyan-500' },
+  };
+
+  const getColorForCategory = (category) => {
+    return categoryColors[category] || { 
+      bg: 'bg-gray-50', 
+      text: 'text-gray-600', 
+      icon: 'text-gray-500' 
+    };
+  };
+
+  // Get recent links (max 10)
+  const recentLinks = [...filteredLinks].slice(0, 10);
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30">
       <Header 
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
-        onMenuClick={() => setSidebarOpen(!sidebarOpen)}
       />
       
-      <div className="flex">
-        <Sidebar 
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onCategoryChange={setSelectedCategory}
-          tags={allTags}
-          linkCount={links.length}
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-        />
-        
-        <main className="flex-1 p-4 md:p-8 md:ml-64">
-          {/* Add Link Button */}
-          <div className="mb-6 flex justify-between items-center">
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900">
-                {selectedCategory === 'all' ? 'All Links' : selectedCategory}
-              </h2>
-              <p className="text-gray-600 text-sm mt-1">
-                {filteredLinks.length} {filteredLinks.length === 1 ? 'link' : 'links'}
-              </p>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {loading ? (
+          <div className="flex items-center justify-center h-64">
+            <Loader className="animate-spin text-indigo-500" size={40} />
+          </div>
+        ) : links.length === 0 ? (
+          // Empty State
+          <div className="text-center py-16">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-indigo-100 rounded-full mb-6">
+              <Folder className="text-indigo-600" size={40} />
             </div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">No links yet</h3>
+            <p className="text-gray-600 mb-8 max-w-md mx-auto">
+              Start organizing your links by creating your first one. Add categories and tags to keep everything organized.
+            </p>
             <button
               onClick={() => {
                 setEditingLink(null);
                 setIsModalOpen(true);
               }}
-              className="bg-gray-900 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-800 transition-colors flex items-center gap-2"
+              className="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 hover:shadow-xl hover:shadow-indigo-300"
             >
               <Plus size={20} />
-              <span className="hidden sm:inline">Add Link</span>
+              Add Your First Link
             </button>
           </div>
+        ) : (
+          <>
+            {/* Category Cards */}
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Categories</h2>
+                <button
+                  onClick={() => {
+                    setEditingLink(null);
+                    setIsModalOpen(true);
+                  }}
+                  className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-all"
+                >
+                  <Plus size={18} />
+                  Add Link
+                </button>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                {Object.entries(categoryStats).map(([category, count]) => {
+                  const colors = getColorForCategory(category);
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`${colors.bg} rounded-2xl p-6 text-left transition-all hover:scale-105 hover:shadow-lg border-2 ${
+                        selectedCategory === category ? 'border-indigo-400 shadow-lg' : 'border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className={`${colors.icon}`}>
+                          <Folder size={32} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className={`text-lg font-bold ${colors.text} mb-1 truncate`}>
+                            {category}
+                          </h3>
+                          <p className={`text-sm ${colors.text} opacity-70`}>
+                            {count} {count === 1 ? 'link' : 'links'}
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
-          {/* Links Grid */}
-          {loading ? (
-            <div className="flex items-center justify-center h-64">
-              <Loader className="animate-spin text-gray-400" size={40} />
+            {/* Recent Links */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-gray-900">Recent Links</h2>
+                {selectedCategory !== 'all' && (
+                  <button
+                    onClick={() => setSelectedCategory('all')}
+                    className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+                  >
+                    View all
+                  </button>
+                )}
+              </div>
+
+              {recentLinks.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">
+                  No links in this category
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {recentLinks.map((link) => {
+                    const colors = getColorForCategory(link.category);
+                    return (
+                      <div
+                        key={link.id}
+                        className="group flex items-center gap-4 p-4 rounded-xl border border-gray-200 hover:border-indigo-300 hover:shadow-md transition-all bg-white"
+                      >
+                        {/* Icon */}
+                        <div className={`flex-shrink-0 w-12 h-12 ${colors.bg} rounded-xl flex items-center justify-center ${colors.icon}`}>
+                          <div className="w-3 h-3 rounded-full bg-current"></div>
+                        </div>
+
+                        {/* Link Info */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1 min-w-0">
+                              <h3 className="font-semibold text-gray-900 mb-1 truncate">
+                                {link.title}
+                              </h3>
+                              <p className="text-sm text-gray-500 truncate">
+                                {link.url}
+                              </p>
+                            </div>
+                            {/* Category Badge */}
+                            <span className={`flex-shrink-0 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${colors.bg} ${colors.text}`}>
+                              {link.category}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex-shrink-0 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <a
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <ExternalLink size={18} />
+                          </a>
+                          <button
+                            onClick={() => handleEditLink(link)}
+                            className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          >
+                            <Edit2 size={18} />
+                          </button>
+                          <button
+                            onClick={() => handleDeleteLink(link.id)}
+                            className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
-          ) : filteredLinks.length === 0 ? (
-            <EmptyState 
-              onAddLink={() => setIsModalOpen(true)}
-              hasLinks={links.length > 0}
-            />
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredLinks.map(link => (
-                <LinkCard
-                  key={link.id}
-                  link={link}
-                  onEdit={handleEditLink}
-                  onDelete={handleDeleteLink}
-                />
-              ))}
-            </div>
-          )}
-        </main>
-      </div>
+          </>
+        )}
+      </main>
 
       {/* Add/Edit Link Modal */}
       <AddLinkModal
