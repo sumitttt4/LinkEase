@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 const CTA = () => {
   return (
-    <section className="py-12 sm:py-16 lg:py-24 text-center bg-white">
+    <section className="py-12 sm:py-16 lg:py-24 text-center bg-white dark:bg-[#09090b] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 sm:mb-8 tracking-tight font-noto-serif">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mb-6 sm:mb-8 tracking-tight font-noto-serif">
           Start organizing smarter.
         </h2>
-        <Link to="/signup" className="inline-block bg-gray-900 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm font-semibold shadow-custom-md hover:shadow-custom-xl hover:-translate-y-1 transition-all duration-300 active:scale-95 mb-3 sm:mb-4">
+        <Link to="/signup" className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm font-semibold shadow-custom-md hover:shadow-custom-xl hover:-translate-y-1 transition-all duration-300 active:scale-95 mb-3 sm:mb-4">
           Get Started
         </Link>
-        <p className="text-xs sm:text-sm text-gray-500">
+        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
           No Card required. Save your first link in seconds.
         </p>
       </div>

@@ -46,14 +46,14 @@ const WhyChoose = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-gray-50/50">
+    <section id="features" className="py-20 bg-gray-50/50 dark:bg-[#09090b] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-6 font-noto-serif">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-6 font-noto-serif">
             From Chaos to clarity.
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            LinkEase isn't just a bookmark tool. It's a <span className="font-semibold text-gray-900">memory upgrade</span> for your browser.
+          <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+            LinkEase isn't just a bookmark tool. It's a <span className="font-semibold text-gray-900 dark:text-gray-200">memory upgrade</span> for your browser.
           </p>
         </div>
 
@@ -62,17 +62,17 @@ const WhyChoose = () => {
           {bentoFeatures.map((feature, index) => (
             <div
               key={index}
-              className={`${feature.span} ${feature.bgColor} border ${feature.borderColor} rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500 hover:-translate-y-1 flex flex-col`}
+              className={`${feature.span} ${feature.bgColor} dark:bg-white/5 border ${feature.borderColor} dark:border-white/10 rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group hover:shadow-2xl hover:shadow-gray-200/50 dark:hover:shadow-black/50 transition-all duration-500 hover:-translate-y-1 flex flex-col`}
             >
               {/* Content Top */}
               <div className="relative z-10 mb-8">
                 <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 ${feature.tagColor}`}>
                   {feature.tag}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-sm">
+                <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed max-w-sm">
                   {feature.description}
                 </p>
               </div>
@@ -84,31 +84,31 @@ const WhyChoose = () => {
                 {feature.illustration === 'clutter' && (
                   <div className="relative w-full max-w-[320px]">
                     {/* Browser UI Container */}
-                    <div className="bg-white border border-gray-200 rounded-xl shadow-lg border-b-4 border-b-gray-200 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-lg border-b-4 border-b-gray-200 dark:border-b-gray-700 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
                       {/* Fake Address Bar */}
-                      <div className="bg-gray-100 p-2 flex items-center gap-2 border-b border-gray-100">
+                      <div className="bg-gray-100 dark:bg-gray-700 p-2 flex items-center gap-2 border-b border-gray-100 dark:border-gray-600">
                         <div className="flex gap-1.5">
                           <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
                           <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
                         </div>
-                        <div className="flex-1 h-5 bg-white rounded border border-gray-200"></div>
+                        <div className="flex-1 h-5 bg-white dark:bg-gray-600 rounded border border-gray-200 dark:border-gray-500"></div>
                       </div>
 
                       {/* CRAMMED TABS */}
-                      <div className="flex overflow-hidden border-b border-gray-200 h-8">
+                      <div className="flex overflow-hidden border-b border-gray-200 dark:border-gray-700 h-8">
                         {[...Array(15)].map((_, i) => (
-                          <div key={i} className="flex-1 border-r border-gray-200 bg-gray-50 flex items-center justify-center min-w-[20px]">
-                            <div className={`w-3 h-3 rounded-full ${i % 2 === 0 ? 'bg-blue-200' : 'bg-pink-200'}`}></div>
+                          <div key={i} className="flex-1 border-r border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 flex items-center justify-center min-w-[20px]">
+                            <div className={`w-3 h-3 rounded-full ${i % 2 === 0 ? 'bg-blue-200 dark:bg-blue-400' : 'bg-pink-200 dark:bg-pink-400'}`}></div>
                           </div>
                         ))}
                       </div>
 
                       {/* Highlighted "Too Many" Warning */}
-                      <div className="p-6 bg-red-50/50 flex flex-col items-center justify-center text-center pb-8">
-                        <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-3 animate-pulse">
-                          <span className="text-lg font-bold text-red-600">!</span>
+                      <div className="p-6 bg-red-50/50 dark:bg-red-900/20 flex flex-col items-center justify-center text-center pb-8">
+                        <div className="w-12 h-12 bg-red-100 dark:bg-red-900/50 rounded-full flex items-center justify-center mb-3 animate-pulse">
+                          <span className="text-lg font-bold text-red-600 dark:text-red-300">!</span>
                         </div>
-                        <div className="text-xs font-bold text-red-500 uppercase tracking-wide">High Memory Usage</div>
+                        <div className="text-xs font-bold text-red-500 dark:text-red-300 uppercase tracking-wide">High Memory Usage</div>
                       </div>
                     </div>
 
@@ -151,10 +151,10 @@ const WhyChoose = () => {
                 {feature.illustration === 'calm' && (
                   <div className="relative w-full max-w-[300px]">
                     {/* Simplified Clean List */}
-                    <div className="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
-                      <div className="p-3 border-b border-gray-50 flex justify-between items-center bg-gray-50/50">
+                    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-blue-100 dark:border-blue-900 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                      <div className="p-3 border-b border-gray-50 dark:border-gray-800 flex justify-between items-center bg-gray-50/50 dark:bg-gray-800/50">
                         <span className="text-[10px] font-bold text-gray-400 uppercase">Saved Sessions</span>
-                        <Filter className="w-3 h-3 text-gray-300" />
+                        <Filter className="w-3 h-3 text-gray-300 dark:text-gray-600" />
                       </div>
                       <div className="p-2 space-y-2">
                         {[
@@ -162,12 +162,12 @@ const WhyChoose = () => {
                           { name: 'Holiday Gift Ideas', count: 8, color: 'bg-purple-500' },
                           { name: 'React Tutorials', count: 5, color: 'bg-cyan-500' }
                         ].map((item, i) => (
-                          <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group/item">
-                            <div className={`w-8 h-8 rounded-lg ${item.color} bg-opacity-10 flex items-center justify-center text-xs font-bold ${item.color.replace('bg-', 'text-')}`}>
+                          <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group/item">
+                            <div className={`w-8 h-8 rounded-lg ${item.color} bg-opacity-10 dark:bg-opacity-20 flex items-center justify-center text-xs font-bold ${item.color.replace('bg-', 'text-')} dark:text-white`}>
                               <FolderPlus className="w-4 h-4" />
                             </div>
                             <div className="flex-1">
-                              <div className="text-xs font-semibold text-gray-700">{item.name}</div>
+                              <div className="text-xs font-semibold text-gray-700 dark:text-gray-200">{item.name}</div>
                               <div className="text-[10px] text-gray-400">{item.count} links • Just now</div>
                             </div>
                             <ArrowRight className="w-3 h-3 text-gray-300 group-hover/item:text-gray-500" />
@@ -190,19 +190,19 @@ const WhyChoose = () => {
                       {/* Flying Tabs out of folder */}
                       <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
                         {/* Tab 1 */}
-                        <div className="absolute bg-white p-2 rounded-lg shadow-md border border-gray-100 w-16 transform transition-all duration-700 group-hover:-translate-y-16 group-hover:-translate-x-12 group-hover:rotate-[-6deg] opacity-0 group-hover:opacity-100">
-                          <div className="h-1 w-full bg-purple-200 rounded mb-1"></div>
-                          <div className="h-1 w-2/3 bg-gray-100 rounded"></div>
+                        <div className="absolute bg-white dark:bg-gray-800 p-2 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 w-16 transform transition-all duration-700 group-hover:-translate-y-16 group-hover:-translate-x-12 group-hover:rotate-[-6deg] opacity-0 group-hover:opacity-100">
+                          <div className="h-1 w-full bg-purple-200 dark:bg-purple-500 rounded mb-1"></div>
+                          <div className="h-1 w-2/3 bg-gray-100 dark:bg-gray-600 rounded"></div>
                         </div>
                         {/* Tab 2 */}
-                        <div className="absolute bg-white p-2 rounded-lg shadow-md border border-gray-100 w-16 transform transition-all duration-700 delay-75 group-hover:-translate-y-20 group-hover:translate-x-0 group-hover:scale-110 opacity-0 group-hover:opacity-100 z-20">
-                          <div className="h-1 w-full bg-blue-200 rounded mb-1"></div>
-                          <div className="h-1 w-3/4 bg-gray-100 rounded"></div>
+                        <div className="absolute bg-white dark:bg-gray-800 p-2 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 w-16 transform transition-all duration-700 delay-75 group-hover:-translate-y-20 group-hover:translate-x-0 group-hover:scale-110 opacity-0 group-hover:opacity-100 z-20">
+                          <div className="h-1 w-full bg-blue-200 dark:bg-blue-500 rounded mb-1"></div>
+                          <div className="h-1 w-3/4 bg-gray-100 dark:bg-gray-600 rounded"></div>
                         </div>
                         {/* Tab 3 */}
-                        <div className="absolute bg-white p-2 rounded-lg shadow-md border border-gray-100 w-16 transform transition-all duration-700 delay-150 group-hover:-translate-y-16 group-hover:translate-x-12 group-hover:rotate-[6deg] opacity-0 group-hover:opacity-100">
-                          <div className="h-1 w-full bg-green-200 rounded mb-1"></div>
-                          <div className="h-1 w-1/2 bg-gray-100 rounded"></div>
+                        <div className="absolute bg-white dark:bg-gray-800 p-2 rounded-lg shadow-md border border-gray-100 dark:border-gray-700 w-16 transform transition-all duration-700 delay-150 group-hover:-translate-y-16 group-hover:translate-x-12 group-hover:rotate-[6deg] opacity-0 group-hover:opacity-100">
+                          <div className="h-1 w-full bg-green-200 dark:bg-green-500 rounded mb-1"></div>
+                          <div className="h-1 w-1/2 bg-gray-100 dark:bg-gray-600 rounded"></div>
                         </div>
                       </div>
 

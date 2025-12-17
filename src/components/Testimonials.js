@@ -65,14 +65,14 @@ const Testimonials = () => {
     const { prev, current, next } = getVisibleCards();
 
     return (
-        <section className="py-20 bg-gray-50 overflow-hidden relative">
-            <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none bg-[radial-gradient(#6366F1_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <section className="py-20 bg-gray-50 dark:bg-[#09090b] overflow-hidden relative transition-colors duration-300">
+            <div className="absolute top-0 left-0 w-full h-full opacity-5 dark:opacity-20 pointer-events-none bg-[radial-gradient(#6366F1_1px,transparent_1px)] dark:bg-[radial-gradient(#818cf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12 text-center relative z-10">
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 font-noto-serif">
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mb-4 font-noto-serif">
                     Loved by <span className="text-primary-purple">Reviewers</span>
                 </h2>
-                <p className="text-lg text-gray-600">The new standard for browser organization.</p>
+                <p className="text-lg text-gray-600 dark:text-gray-400">The new standard for browser organization.</p>
             </div>
 
             <div className="relative max-w-6xl mx-auto flex items-center justify-center min-h-[400px]">
@@ -80,7 +80,7 @@ const Testimonials = () => {
                 {/* Previous Button */}
                 <button
                     onClick={prevTestimonial}
-                    className="absolute left-4 lg:left-0 z-30 p-3 rounded-full bg-white shadow-lg text-gray-700 hover:text-primary-purple hover:scale-110 transition-all duration-300 border border-gray-100 hidden sm:block"
+                    className="absolute left-4 lg:left-0 z-30 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg text-gray-700 dark:text-gray-200 hover:text-primary-purple dark:hover:text-primary-purple hover:scale-110 transition-all duration-300 border border-gray-100 dark:border-gray-700 hidden sm:block"
                 >
                     <ChevronLeft className="w-6 h-6" />
                 </button>
@@ -88,7 +88,7 @@ const Testimonials = () => {
                 {/* Next Button */}
                 <button
                     onClick={nextTestimonial}
-                    className="absolute right-4 lg:right-0 z-30 p-3 rounded-full bg-white shadow-lg text-gray-700 hover:text-primary-purple hover:scale-110 transition-all duration-300 border border-gray-100 hidden sm:block"
+                    className="absolute right-4 lg:right-0 z-30 p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg text-gray-700 dark:text-gray-200 hover:text-primary-purple dark:hover:text-primary-purple hover:scale-110 transition-all duration-300 border border-gray-100 dark:border-gray-700 hidden sm:block"
                 >
                     <ChevronRight className="w-6 h-6" />
                 </button>
@@ -132,7 +132,7 @@ const Testimonials = () => {
 
 const TestimonialCard = ({ data, isActive = false }) => {
     return (
-        <div className="bg-white rounded-2xl overflow-hidden h-full flex flex-col shadow-sm border border-gray-100">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden h-full flex flex-col shadow-sm border border-gray-100 dark:border-gray-700 transition-colors duration-300">
             {/* Header - Brand Color */}
             <div className="bg-slate-900 p-6 flex items-center gap-4 border-b border-indigo-500/30 relative overflow-hidden">
                 {/* Detail overlay */}
@@ -152,8 +152,8 @@ const TestimonialCard = ({ data, isActive = false }) => {
             </div>
 
             {/* Content */}
-            <div className="p-8 flex-grow flex flex-col justify-between bg-white relative">
-                <p className="text-gray-600 leading-relaxed italic mb-6">
+            <div className="p-8 flex-grow flex flex-col justify-between bg-white dark:bg-gray-800 relative transition-colors duration-300">
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed italic mb-6">
                     "{data.content}"
                 </p>
 
