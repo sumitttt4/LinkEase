@@ -1,19 +1,31 @@
-import { 
-  collection, 
-  addDoc, 
-  getDocs, 
-  updateDoc, 
-  deleteDoc, 
-  doc, 
-  query, 
-  where,
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+  query,
   orderBy,
-  serverTimestamp 
+  serverTimestamp
 } from 'firebase/firestore';
 import { db } from '../firebase/config';
 
+// Storage for demo mode
+let demoLinks = [
+  { id: '1', title: 'Shadcn UI', url: 'https://ui.shadcn.com', category: 'Design', tags: ['ui', 'components'], createdAt: new Date() },
+  { id: '2', title: 'React', url: 'https://react.dev', category: 'Development', tags: ['frontend', 'library'], createdAt: new Date() },
+  { id: '3', title: 'Tailwind CSS', url: 'https://tailwindcss.com', category: 'Design', tags: ['css', 'framework'], createdAt: new Date() }
+];
+
 // Add a new link
 export const addLink = async (userId, linkData) => {
+  if (!db) {
+    const newLink = { ...linkData, id: Date.now().toString(), createdAt: new Date(), updatedAt: new Date() };
+    demoLinks.unshift(newLink);
+    return newLink;
+  }
+
   try {
     const docRef = await addDoc(collection(db, 'users', userId, 'links'), {
       ...linkData,
@@ -29,6 +41,10 @@ export const addLink = async (userId, linkData) => {
 
 // Get all links for a user
 export const getUserLinks = async (userId) => {
+  if (!db) {
+    return [...demoLinks];
+  }
+
   try {
     const q = query(
       collection(db, 'users', userId, 'links'),
@@ -49,6 +65,11 @@ export const getUserLinks = async (userId) => {
 
 // Update a link
 export const updateLink = async (userId, linkId, linkData) => {
+  if (!db) {
+    demoLinks = demoLinks.map(l => l.id === linkId ? { ...l, ...linkData, updatedAt: new Date() } : l);
+    return;
+  }
+
   try {
     const linkRef = doc(db, 'users', userId, 'links', linkId);
     await updateDoc(linkRef, {
@@ -63,6 +84,11 @@ export const updateLink = async (userId, linkId, linkData) => {
 
 // Delete a link
 export const deleteLink = async (userId, linkId) => {
+  if (!db) {
+    demoLinks = demoLinks.filter(l => l.id !== linkId);
+    return;
+  }
+
   try {
     await deleteDoc(doc(db, 'users', userId, 'links', linkId));
   } catch (error) {
@@ -74,9 +100,9 @@ export const deleteLink = async (userId, linkId) => {
 // Search links
 export const searchLinks = (links, searchTerm) => {
   if (!searchTerm) return links;
-  
+
   const term = searchTerm.toLowerCase();
-  return links.filter(link => 
+  return links.filter(link =>
     link.title?.toLowerCase().includes(term) ||
     link.url?.toLowerCase().includes(term) ||
     link.description?.toLowerCase().includes(term) ||

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fafafa;
+    }
+    .btn {
+      width: 100%;
+      background: #0f172a;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn:hover {
+      background: #1e293b;
+    }
+    .status {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+    }
+    h1 {
+      font-size: 18px;
+      margin: 0 0 16px 0;
+      color: #0f172a;
+    }
+    .note {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 8px;
+      text-align: center;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <h1>LinkEase Saver</h1>
+  <button id="copyBtn" class="btn">
+    Copy All Tabs
+  </button>
+  <div id="status" class="status"></div>
+  <p class="note">Click to copy all open tabs to clipboard, then use "Import" in your LinkEase Dashboard.</p>
+  <script src="popup.js"></script>
+</body>
+</html>

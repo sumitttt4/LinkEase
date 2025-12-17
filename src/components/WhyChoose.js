@@ -1,238 +1,221 @@
 import React from 'react';
+import { Layers, Search, Tag, Cloud, CheckCircle, Zap, Shield, Smartphone, ArrowRight, Sparkles, Filter, ArrowDownToLine, Copy, FolderPlus, MousePointer2, Clock, Trash2, X } from 'lucide-react';
 
 const WhyChoose = () => {
   const bentoFeatures = [
     {
-      tag: 'SMART CATEGORIZATION',
-      title: 'Organize links while you browse',
-      description: 'Automatically categorize your links with AI. We take care of organization so you never lose track of important resources.',
-      bgColor: 'bg-gradient-to-br from-purple-100 via-purple-50 to-purple-100',
-      illustration: 'organize',
-      bullets: [
-        { icon: '🟠', text: 'Create multiple categories and custom tags' },
-        { icon: '🟣', text: 'AI-powered auto-categorization for new links' },
-        { icon: '🔵', text: 'View everything in an organized dashboard' }
-      ]
+      span: 'md:col-span-1',
+      tag: 'THE PROBLEM',
+      tagColor: 'text-red-600 bg-red-100',
+      title: 'Drowning in 50+ Tabs?',
+      description: 'Your browser is slow. You can\'t find that one article. You want to restart, but you\'re afraid to lose your research.',
+      bgColor: 'bg-white',
+      borderColor: 'border-red-100',
+      illustration: 'clutter'
     },
     {
-      tag: 'QUICK SEARCH',
-      title: 'Find your links in seconds',
-      description: 'Lightning-fast search that understands context. Your gallery recognizes patterns and suggests results tailored for your workflow.',
-      bgColor: 'bg-gradient-to-br from-pink-100 via-pink-50 to-pink-100',
-      illustration: 'search',
-      bullets: [
-        { icon: '🟠', text: 'Instant search across all your links' },
-        { icon: '🟣', text: 'Smart filters by category, date, and tags' },
-        { icon: '🟡', text: 'Contextual suggestions based on your habits' }
-      ]
+      span: 'md:col-span-1',
+      tag: 'THE SOLUTION',
+      tagColor: 'text-emerald-600 bg-emerald-100',
+      title: 'One Click to Save them All',
+      description: 'The "Session Saver" extension grabs every open URL instantly. No copy-pasting. Just click and chill.',
+      bgColor: 'bg-emerald-50/50',
+      borderColor: 'border-emerald-200',
+      illustration: 'click'
     },
     {
-      tag: 'CUSTOM TAGS',
-      title: 'Your organization, your way',
-      description: 'Create your own personalized organization system with unlimited custom tags. Tag links your way and find them instantly.',
-      bgColor: 'bg-gradient-to-br from-orange-100 via-orange-50 to-orange-100',
-      illustration: 'tags',
-      bullets: [
-        { icon: '🟣', text: 'Unlimited custom tags with color coding' },
-        { icon: '🔵', text: 'Bulk tag multiple links at once' },
-        { icon: '🟢', text: 'Filter and sort by any combination of tags' }
-      ]
+      span: 'md:col-span-1',
+      tag: 'THE RESULT',
+      tagColor: 'text-blue-600 bg-blue-100',
+      title: 'Zero Clutter, Zero Stress',
+      description: 'Your tabs turn into a neat, dated folder. Close your browser with total peace of mind.',
+      bgColor: 'bg-blue-50/50',
+      borderColor: 'border-blue-200',
+      illustration: 'calm'
     },
     {
-      tag: 'CLOUD SYNC',
-      title: 'Access anywhere, anytime',
-      description: 'Real-time synchronization across all your devices. Your links follow you wherever you go with seamless cloud backup.',
-      bgColor: 'bg-gradient-to-br from-emerald-100 via-emerald-50 to-emerald-100',
-      illustration: 'sync',
-      bullets: [
-        { icon: '🟢', text: 'Automatic backup to secure cloud storage' },
-        { icon: '🔵', text: 'Sync across desktop, mobile, and tablet' },
-        { icon: '🟣', text: 'Real-time updates in milliseconds' }
-      ]
+      span: 'md:col-span-1',
+      tag: 'THE POWER',
+      tagColor: 'text-purple-600 bg-purple-100',
+      title: 'Time Travel for Browsers',
+      description: 'Need that session from last Tuesday? Restore all tabs at once or pick just the one you need.',
+      bgColor: 'bg-white',
+      borderColor: 'border-purple-200',
+      illustration: 'restore'
     }
   ];
 
-  const smallFeatures = [];
-
   return (
-    <section id="features" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section id="features" className="py-20 bg-gray-50/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-3 sm:mb-4 tracking-tight font-noto-serif">
-          Why Choose LinkEase?
-        </h2>
-        <p className="text-base sm:text-lg text-center text-gray-600 mb-10 sm:mb-12 lg:mb-16">
-          Powerful features designed to simplify your digital workflow
-        </p>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-6 font-noto-serif">
+            From Chaos to clarity.
+          </h2>
+          <p className="text-lg text-gray-600 leading-relaxed">
+            LinkEase isn't just a bookmark tool. It's a <span className="font-semibold text-gray-900">memory upgrade</span> for your browser.
+          </p>
+        </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {bentoFeatures.map((feature, index) => (
-            <div 
+            <div
               key={index}
-              className={`${feature.bgColor} rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 transition-all duration-500 hover:shadow-layered cursor-pointer group relative overflow-hidden`}
-              onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-                e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-              }}
+              className={`${feature.span} ${feature.bgColor} border ${feature.borderColor} rounded-[2rem] p-8 lg:p-10 relative overflow-hidden group hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500 hover:-translate-y-1 flex flex-col`}
             >
-              {/* Subtle gradient overlay on hover */}
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.4), transparent 40%)`
-                }}
-              ></div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center relative z-10">
-                {/* Left Content */}
-                <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                  <span className="text-xs font-bold text-purple-600 tracking-widest mb-2 sm:mb-3 block uppercase">
-                    {feature.tag}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-5 leading-tight tracking-tight">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-700 mb-6 sm:mb-8 lg:mb-9 leading-relaxed" style={{ lineHeight: '1.7' }}>
-                    {feature.description}
-                  </p>
-                  <div className="space-y-2.5 sm:space-y-3.5">
-                    {feature.bullets.map((bullet, idx) => (
-                      <div 
-                        key={idx} 
-                        className="flex items-start gap-2.5 sm:gap-3.5 opacity-0 animate-scale-in"
-                        style={{ animationDelay: `${idx * 0.15}s`, animationFillMode: 'forwards' }}
-                      >
-                        <span className="text-lg sm:text-xl flex-shrink-0 leading-none">{bullet.icon}</span>
-                        <span className="text-xs sm:text-sm text-gray-800 leading-relaxed" style={{ lineHeight: '1.6' }}>{bullet.text}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              {/* Content Top */}
+              <div className="relative z-10 mb-8">
+                <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 ${feature.tagColor}`}>
+                  {feature.tag}
+                </span>
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3 leading-tight">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed max-w-sm">
+                  {feature.description}
+                </p>
+              </div>
 
-                {/* Right Illustration */}
-                <div className={`flex items-center justify-center mt-6 lg:mt-0 ${index % 2 === 1 ? 'lg:order-1 illustration-shift-left' : 'illustration-shift-right'}`}>
-                  {feature.illustration === 'organize' ? (
-                    <div className="relative w-full h-80 flex items-center justify-center">
-                      {/* Phone with purple eye - Enhanced */}
-                      <svg className="w-48 h-80" viewBox="0 0 180 290" fill="none">
-                        {/* Phone body */}
-                        <rect x="10" y="10" width="160" height="270" rx="24" fill="#7C3AED"/>
-                        
-                        {/* Screen with subtle gradient */}
-                        <defs>
-                          <linearGradient id="screenGradient" x1="90" y1="30" x2="90" y2="260" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stopColor="#F5F3FF"/>
-                            <stop offset="100%" stopColor="#FFFFFF"/>
-                          </linearGradient>
-                        </defs>
-                        <rect x="20" y="30" width="140" height="230" rx="16" fill="url(#screenGradient)"/>
-                        
-                        {/* Eye icon - larger and better proportioned */}
-                        <ellipse cx="90" cy="125" rx="50" ry="45" fill="#DDD6FE"/>
-                        <circle cx="90" cy="125" r="24" fill="#7C3AED"/>
-                        <circle cx="90" cy="120" r="12" fill="white"/>
-                        
-                        {/* Bottom button */}
-                        <rect x="70" y="275" width="40" height="5" rx="2.5" fill="white"/>
-                      </svg>
+              {/* Illustration Area - fills the bottom/rest of the card */}
+              <div className="relative flex-grow flex items-center justify-center min-h-[240px] mt-auto">
+
+                {/* 1. CLUTTER ILLUSTRATION */}
+                {feature.illustration === 'clutter' && (
+                  <div className="relative w-full max-w-[320px]">
+                    {/* Browser UI Container */}
+                    <div className="bg-white border border-gray-200 rounded-xl shadow-lg border-b-4 border-b-gray-200 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                      {/* Fake Address Bar */}
+                      <div className="bg-gray-100 p-2 flex items-center gap-2 border-b border-gray-100">
+                        <div className="flex gap-1.5">
+                          <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
+                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-400"></div>
+                        </div>
+                        <div className="flex-1 h-5 bg-white rounded border border-gray-200"></div>
+                      </div>
+
+                      {/* CRAMMED TABS */}
+                      <div className="flex overflow-hidden border-b border-gray-200 h-8">
+                        {[...Array(15)].map((_, i) => (
+                          <div key={i} className="flex-1 border-r border-gray-200 bg-gray-50 flex items-center justify-center min-w-[20px]">
+                            <div className={`w-3 h-3 rounded-full ${i % 2 === 0 ? 'bg-blue-200' : 'bg-pink-200'}`}></div>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Highlighted "Too Many" Warning */}
+                      <div className="p-6 bg-red-50/50 flex flex-col items-center justify-center text-center pb-8">
+                        <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-3 animate-pulse">
+                          <span className="text-lg font-bold text-red-600">!</span>
+                        </div>
+                        <div className="text-xs font-bold text-red-500 uppercase tracking-wide">High Memory Usage</div>
+                      </div>
                     </div>
-                  ) : feature.illustration === 'search' ? (
-                    <div className="relative w-full h-80 flex items-center justify-center">
-                      {/* Search bar with results - Simplified & Language-agnostic */}
-                      <svg className="w-80 h-72" viewBox="0 0 300 260" fill="none">
-                        {/* Search input field */}
-                        <rect x="15" y="35" width="210" height="60" rx="30" fill="white" stroke="#DB2777" strokeWidth="3.5"/>
-                        
-                        {/* Search icon */}
-                        <circle cx="45" cy="65" r="12" stroke="#DB2777" strokeWidth="2.5" fill="none"/>
-                        <line x1="54" y1="74" x2="60" y2="80" stroke="#DB2777" strokeWidth="2.5" strokeLinecap="round"/>
-                        
-                        {/* Search text placeholder lines */}
-                        <rect x="75" y="55" width="80" height="6" rx="3" fill="#F9A8D4" opacity="0.6"/>
-                        <rect x="75" y="68" width="50" height="6" rx="3" fill="#F9A8D4" opacity="0.4"/>
-                        
-                        {/* Pink search button */}
-                        <circle cx="245" cy="65" r="26" fill="#DB2777"/>
-                        <line x1="240" y1="60" x2="250" y2="70" stroke="white" strokeWidth="3.5" strokeLinecap="round"/>
-                        
-                        {/* Search results - Simplified rectangles */}
-                        <g transform="translate(30, 125)">
-                          {/* Result 1 */}
-                          <circle cx="10" cy="15" r="9" fill="#EC4899"/>
-                          <rect x="28" y="8" width="140" height="14" rx="7" fill="#FCE7F3"/>
-                          <rect x="35" y="11" width="90" height="8" rx="4" fill="#F9A8D4"/>
-                          
-                          {/* Result 2 */}
-                          <circle cx="10" cy="55" r="9" fill="#EC4899"/>
-                          <rect x="28" y="48" width="140" height="14" rx="7" fill="#FCE7F3"/>
-                          <rect x="35" y="51" width="70" height="8" rx="4" fill="#F9A8D4"/>
-                        </g>
-                        
-                        {/* Yellow decorative dots */}
-                        <circle cx="250" cy="170" r="11" fill="#FDE047"/>
-                        <circle cx="50" cy="225" r="9" fill="#FDE047"/>
-                      </svg>
+
+                    {/* Floating Elements */}
+                    <div className="absolute -top-4 -right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg transform rotate-12 animate-bounce">
+                      Speed: -40%
                     </div>
-                  ) : feature.illustration === 'tags' ? (
-                    <div className="relative w-full h-80 flex items-center justify-center">
-                      {/* Color palette with tags - Enhanced proportions */}
-                      <svg className="w-72 h-72" viewBox="0 0 260 260" fill="none">
-                        {/* Main container/box */}
-                        <rect x="45" y="65" width="170" height="130" rx="18" fill="white" stroke="#F97316" strokeWidth="3.5"/>
-                        
-                        {/* Four color circles arranged in 2x2 grid - better spacing */}
-                        <circle cx="95" cy="110" r="22" fill="#F472B6"/>
-                        <circle cx="155" cy="110" r="22" fill="#60A5FA"/>
-                        <circle cx="95" cy="165" r="22" fill="#34D399"/>
-                        <circle cx="155" cy="165" r="22" fill="#FBBF24"/>
-                        
-                        {/* Orange accent bar at bottom */}
-                        <rect x="75" y="210" width="110" height="12" rx="6" fill="#F97316"/>
-                        
-                        {/* Yellow star decorations - better positioning */}
-                        <circle cx="220" cy="60" r="9" fill="#FBBF24"/>
-                        <circle cx="225" cy="185" r="7" fill="#FBBF24"/>
-                        
-                        {/* Star shape */}
-                        <path d="M 40 218 L 43 227 L 52 228 L 45 234 L 47 243 L 40 239 L 33 243 L 35 234 L 28 228 L 37 227 Z" fill="#FBBF24"/>
-                      </svg>
+                  </div>
+                )}
+
+
+                {/* 2. CLICK ILLUSTRATION */}
+                {feature.illustration === 'click' && (
+                  <div className="relative w-full max-w-[280px] h-[200px] flex items-center justify-center">
+                    {/* The Button */}
+                    <div className="relative group/btn cursor-pointer">
+                      <div className="absolute inset-0 bg-emerald-400 rounded-2xl blur-xl opacity-20 group-hover/btn:opacity-40 transition-opacity"></div>
+                      <div className="relative bg-gradient-to-br from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-2xl shadow-xl shadow-emerald-200 transform group-hover/btn:scale-105 transition-all duration-300 flex items-center gap-3">
+                        <Copy className="w-6 h-6" />
+                        <span className="font-bold text-lg">Save Session</span>
+                      </div>
+
+                      {/* The Cursor */}
+                      <div className="absolute -bottom-8 -right-8 transform -translate-y-2 -translate-x-2 transition-transform duration-700 group-hover/btn:translate-y-0 group-hover/btn:translate-x-0">
+                        <MousePointer2 className="w-10 h-10 text-gray-800 fill-white drop-shadow-lg" />
+                      </div>
+
+                      {/* Success Popups */}
+                      <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-4 transition-all duration-500 delay-100">
+                        <div className="bg-white border border-emerald-100 px-3 py-1 rounded-lg shadow-sm text-xs font-semibold text-emerald-600 flex items-center gap-1">
+                          <CheckCircle className="w-3 h-3" /> 42 Tabs Saved!
+                        </div>
+                      </div>
                     </div>
-                  ) : (
-                    <div className="relative w-full h-80 flex items-center justify-center">
-                      {/* Cloud with devices - Simplified & Cleaner */}
-                      <svg className="w-64 h-72" viewBox="0 0 240 260" fill="none">
-                        {/* Cloud top */}
-                        <ellipse cx="120" cy="65" rx="58" ry="34" fill="white" stroke="#10B981" strokeWidth="3.5"/>
-                        <ellipse cx="88" cy="74" rx="34" ry="22" fill="white" stroke="#10B981" strokeWidth="3.5"/>
-                        <ellipse cx="152" cy="74" rx="34" ry="22" fill="white" stroke="#10B981" strokeWidth="3.5"/>
-                        
-                        {/* Cloud center dot */}
-                        <circle cx="120" cy="65" r="11" fill="#10B981"/>
-                        
-                        {/* Small sync indicators */}
-                        <circle cx="88" cy="95" r="7" fill="#34D399"/>
-                        <circle cx="152" cy="95" r="7" fill="#34D399"/>
-                        
-                        {/* Three devices below - Simplified shapes */}
-                        {/* Desktop/Monitor - left (largest) */}
-                        <rect x="25" y="150" width="55" height="38" rx="6" fill="white" stroke="#10B981" strokeWidth="3"/>
-                        <rect x="44" y="188" width="17" height="8" rx="2" fill="#10B981"/>
-                        <rect x="35" y="196" width="35" height="4" rx="2" fill="#10B981"/>
-                        
-                        {/* Tablet - center (medium) */}
-                        <rect x="95" y="155" width="45" height="35" rx="5" fill="white" stroke="#10B981" strokeWidth="3"/>
-                        <circle cx="117.5" cy="185" r="3" fill="#10B981"/>
-                        
-                        {/* Mobile - right (smallest) */}
-                        <rect x="158" y="145" width="32" height="55" rx="7" fill="white" stroke="#10B981" strokeWidth="3"/>
-                        <circle cx="174" cy="192" r="3.5" fill="#10B981"/>
-                      </svg>
+                  </div>
+                )}
+
+
+                {/* 3. CALM ILLUSTRATION */}
+                {feature.illustration === 'calm' && (
+                  <div className="relative w-full max-w-[300px]">
+                    {/* Simplified Clean List */}
+                    <div className="bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
+                      <div className="p-3 border-b border-gray-50 flex justify-between items-center bg-gray-50/50">
+                        <span className="text-[10px] font-bold text-gray-400 uppercase">Saved Sessions</span>
+                        <Filter className="w-3 h-3 text-gray-300" />
+                      </div>
+                      <div className="p-2 space-y-2">
+                        {[
+                          { name: 'Thesis Research', count: 12, color: 'bg-blue-500' },
+                          { name: 'Holiday Gift Ideas', count: 8, color: 'bg-purple-500' },
+                          { name: 'React Tutorials', count: 5, color: 'bg-cyan-500' }
+                        ].map((item, i) => (
+                          <div key={i} className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 transition-colors group/item">
+                            <div className={`w-8 h-8 rounded-lg ${item.color} bg-opacity-10 flex items-center justify-center text-xs font-bold ${item.color.replace('bg-', 'text-')}`}>
+                              <FolderPlus className="w-4 h-4" />
+                            </div>
+                            <div className="flex-1">
+                              <div className="text-xs font-semibold text-gray-700">{item.name}</div>
+                              <div className="text-[10px] text-gray-400">{item.count} links • Just now</div>
+                            </div>
+                            <ArrowRight className="w-3 h-3 text-gray-300 group-hover/item:text-gray-500" />
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
+
+                {/* 4. RESTORE ILLUSTRATION */}
+                {feature.illustration === 'restore' && (
+                  <div className="relative w-full max-w-[280px] flex justify-center">
+                    <div className="relative">
+                      {/* Central Folder */}
+                      <div className="w-24 h-24 bg-purple-100 rounded-2xl flex items-center justify-center border-2 border-purple-200 z-10 relative shadow-sm">
+                        <FolderPlus className="w-10 h-10 text-purple-500" />
+                      </div>
+
+                      {/* Flying Tabs out of folder */}
+                      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
+                        {/* Tab 1 */}
+                        <div className="absolute bg-white p-2 rounded-lg shadow-md border border-gray-100 w-16 transform transition-all duration-700 group-hover:-translate-y-16 group-hover:-translate-x-12 group-hover:rotate-[-6deg] opacity-0 group-hover:opacity-100">
+                          <div className="h-1 w-full bg-purple-200 rounded mb-1"></div>
+                          <div className="h-1 w-2/3 bg-gray-100 rounded"></div>
+                        </div>
+                        {/* Tab 2 */}
+                        <div className="absolute bg-white p-2 rounded-lg shadow-md border border-gray-100 w-16 transform transition-all duration-700 delay-75 group-hover:-translate-y-20 group-hover:translate-x-0 group-hover:scale-110 opacity-0 group-hover:opacity-100 z-20">
+                          <div className="h-1 w-full bg-blue-200 rounded mb-1"></div>
+                          <div className="h-1 w-3/4 bg-gray-100 rounded"></div>
+                        </div>
+                        {/* Tab 3 */}
+                        <div className="absolute bg-white p-2 rounded-lg shadow-md border border-gray-100 w-16 transform transition-all duration-700 delay-150 group-hover:-translate-y-16 group-hover:translate-x-12 group-hover:rotate-[6deg] opacity-0 group-hover:opacity-100">
+                          <div className="h-1 w-full bg-green-200 rounded mb-1"></div>
+                          <div className="h-1 w-1/2 bg-gray-100 rounded"></div>
+                        </div>
+                      </div>
+
+                      {/* Action Label */}
+                      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                        <span className="text-xs font-semibold text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300">
+                          Restoring Session...
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
               </div>
             </div>
           ))}

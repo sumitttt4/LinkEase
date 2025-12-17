@@ -1,5 +1,17 @@
 import { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { X, Plus } from 'lucide-react';
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../ui/dialog";
+import { Badge } from "../ui/badge";
+import { cn } from "../../lib/utils";
 
 const AddLinkModal = ({ isOpen, onClose, onSave, editingLink, existingCategories, existingTags }) => {
   const [formData, setFormData] = useState({
@@ -34,11 +46,7 @@ const AddLinkModal = ({ isOpen, onClose, onSave, editingLink, existingCategories
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!formData.url || !formData.title) {
-      alert('URL and Title are required');
-      return;
-    }
+    if (!formData.url || !formData.title) return;
 
     setLoading(true);
     try {
@@ -65,164 +73,103 @@ const AddLinkModal = ({ isOpen, onClose, onSave, editingLink, existingCategories
     setFormData({ ...formData, tags: formData.tags.filter(tag => tag !== tagToRemove) });
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-2xl font-bold text-gray-900">
-            {editingLink ? 'Edit Link' : 'Add New Link'}
-          </h2>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-          >
-            <X size={24} />
-          </button>
-        </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
-          {/* URL */}
-          <div>
-            <label htmlFor="url" className="block text-sm font-semibold text-gray-900 mb-2">
-              URL *
-            </label>
-            <input
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>{editingLink ? 'Edit Link' : 'Add New Link'}</DialogTitle>
+          <DialogDescription>
+            {editingLink ? 'Update the details of your link.' : 'Add a new link to your collection.'}
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4 py-4">
+          <div className="grid gap-2">
+            <label htmlFor="url" className="text-sm font-medium">URL *</label>
+            <Input
               id="url"
               type="url"
               value={formData.url}
               onChange={(e) => setFormData({ ...formData, url: e.target.value })}
               placeholder="https://example.com"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
               required
             />
           </div>
-
-          {/* Title */}
-          <div>
-            <label htmlFor="title" className="block text-sm font-semibold text-gray-900 mb-2">
-              Title *
-            </label>
-            <input
+          <div className="grid gap-2">
+            <label htmlFor="title" className="text-sm font-medium">Title *</label>
+            <Input
               id="title"
-              type="text"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               placeholder="My Awesome Link"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
               required
             />
           </div>
-
-          {/* Description */}
-          <div>
-            <label htmlFor="description" className="block text-sm font-semibold text-gray-900 mb-2">
-              Description
-            </label>
+          <div className="grid gap-2">
+            <label htmlFor="description" className="text-sm font-medium">Description</label>
             <textarea
               id="description"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              placeholder="Brief description of this link..."
-              rows={3}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent resize-none"
+              placeholder="Brief description..."
+              className={cn(
+                "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              )}
             />
           </div>
-
-          {/* Category */}
-          <div>
-            <label htmlFor="category" className="block text-sm font-semibold text-gray-900 mb-2">
-              Category
-            </label>
-            <input
+          <div className="grid gap-2">
+            <label htmlFor="category" className="text-sm font-medium">Category</label>
+            <Input
               id="category"
-              type="text"
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
               placeholder="Work, Personal, Learning..."
               list="categories"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
             />
             <datalist id="categories">
-              {existingCategories.map(cat => (
-                <option key={cat} value={cat} />
-              ))}
+              {existingCategories.map(cat => <option key={cat} value={cat} />)}
             </datalist>
           </div>
-
-          {/* Tags */}
-          <div>
-            <label htmlFor="tags" className="block text-sm font-semibold text-gray-900 mb-2">
-              Tags
-            </label>
-            <div className="flex gap-2 mb-2">
-              <input
-                id="tags"
-                type="text"
+          <div className="grid gap-2">
+            <label className="text-sm font-medium">Tags</label>
+            <div className="flex gap-2">
+              <Input
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && handleAddTag(e)}
                 placeholder="Add tags..."
                 list="existingTags"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent"
               />
-              <button
-                type="button"
-                onClick={handleAddTag}
-                className="px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors"
-              >
+              <Button type="button" onClick={handleAddTag} variant="secondary">
                 Add
-              </button>
+              </Button>
             </div>
             <datalist id="existingTags">
-              {existingTags.map(tag => (
-                <option key={tag} value={tag} />
-              ))}
+              {existingTags.map(tag => <option key={tag} value={tag} />)}
             </datalist>
             {formData.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-2">
                 {formData.tags.map(tag => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                  >
+                  <Badge key={tag} variant="secondary" className="gap-1 pr-1">
                     #{tag}
                     <button
                       type="button"
                       onClick={() => handleRemoveTag(tag)}
-                      className="hover:text-red-600"
+                      className="rounded-full hover:bg-muted p-0.5"
                     >
-                      <X size={14} />
+                      <X className="h-3 w-3" />
                     </button>
-                  </span>
+                  </Badge>
                 ))}
               </div>
             )}
           </div>
-
-          {/* Buttons */}
-          <div className="flex gap-3 pt-4">
-            <button
-              type="button"
-              onClick={onClose}
-              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex-1 px-6 py-3 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50"
-            >
-              {loading ? 'Saving...' : editingLink ? 'Update Link' : 'Add Link'}
-            </button>
-          </div>
+          <DialogFooter>
+            <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
+            <Button type="submit" disabled={loading}>{loading ? 'Saving...' : 'Save Link'}</Button>
+          </DialogFooter>
         </form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 

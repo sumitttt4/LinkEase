@@ -6,7 +6,7 @@ import { ProtectedRoute, PublicRoute } from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import WhyChoose from './components/WhyChoose';
-import OrganizedLinks from './components/OrganizedLinks';
+import Testimonials from './components/Testimonials';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 
@@ -24,7 +24,7 @@ const LandingPage = () => (
     <Navbar />
     <Hero />
     <WhyChoose />
-    <OrganizedLinks />
+    <Testimonials />
     <CTA />
     <Footer />
   </div>
@@ -35,7 +35,7 @@ function App() {
     <Routes>
       {/* Public Routes */}
       <Route path="/" element={<LandingPage />} />
-      
+
       {/* Auth Routes - redirect to dashboard if already logged in */}
       <Route path="/login" element={
         <PublicRoute>
@@ -52,7 +52,7 @@ function App() {
           <ResetPassword />
         </PublicRoute>
       } />
-      
+
       {/* Protected Routes - require authentication */}
       <Route path="/dashboard" element={
         <ProtectedRoute>

@@ -1,90 +1,110 @@
 import React from 'react';
+import { FolderPlus, Copy, Trash2, Plus } from 'lucide-react';
 
 const DashboardPreview = () => {
-  const categories = [
-    { icon: '🎨', badge: 'Design', badgeColor: 'bg-primary-purple', title: 'Design Resources', links: '24 links', progressColor: 'bg-primary-purple' },
-    { icon: '⚡', badge: 'Dev', badgeColor: 'bg-primary-purple', title: 'Development Tools', links: '18 links', progressColor: 'bg-primary-purple' },
-    { icon: '📊', badge: 'Work', badgeColor: 'bg-custom-cyan', title: 'Project Management', links: '32 links', progressColor: 'bg-custom-cyan' },
-    { icon: '📚', badge: 'Learn', badgeColor: 'bg-custom-green', title: 'Learning Materials', links: '15 links', progressColor: 'bg-custom-green' },
-    { icon: '✨', badge: 'Ideas', badgeColor: 'bg-custom-orange', title: 'Inspiration Gallery', links: '27 links', progressColor: 'bg-custom-orange' },
-    { icon: '👥', badge: 'Client', badgeColor: 'bg-custom-red', title: 'Client References', links: '12 links', progressColor: 'bg-custom-red' },
-  ];
-
   return (
-    <div className="relative animate-scale-in">
-      {/* Backdrop Blur Layer */}
-      <div className="absolute -inset-4 bg-gradient-to-br from-purple-100/40 via-blue-100/40 to-cyan-100/40 blur-3xl rounded-3xl opacity-60"></div>
-      
-      <div className="relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 shadow-2xl max-w-4xl mx-auto backdrop-blur-subtle border border-white/50 hover:shadow-[0_20px_80px_rgba(99,102,241,0.15)] transition-all duration-500" 
-           style={{ background: 'linear-gradient(135deg, rgba(255,245,245,0.95) 0%, rgba(255,241,248,0.95) 50%, rgba(240,249,255,0.95) 100%)' }}>
-        
-        {/* Dashboard Header */}
-        <div className="flex justify-between items-center mb-4 sm:mb-6">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div>
-              <h3 className="text-sm sm:text-base lg:text-[17px] font-bold text-gray-900">LinkEase Dashboard</h3>
-              <p className="text-xs sm:text-sm text-gray-500 hidden sm:block">Organize your digital life</p>
+    <div className="relative w-full max-w-5xl mx-auto rounded-xl shadow-2xl overflow-hidden bg-white border border-gray-200">
+      {/* Browser Window Chrome */}
+      <div className="bg-gray-100 border-b border-gray-200 p-3 flex items-center gap-4">
+        <div className="flex gap-2">
+          <div className="w-3 h-3 rounded-full bg-red-400"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div className="w-3 h-3 rounded-full bg-green-400"></div>
+        </div>
+        <div className="flex-1 bg-white h-8 rounded-md shadow-sm border border-gray-200 flex items-center px-4 text-xs text-gray-500">
+          linkease.app/dashboard
+        </div>
+      </div>
+
+      {/* Hero Content */}
+      <div className="flex flex-col md:flex-row h-[400px]">
+        {/* Sidebar */}
+        <div className="hidden md:flex flex-col w-64 bg-gray-50 border-r border-gray-200 p-4">
+          <div className="font-semibold text-gray-800 mb-6 flex items-center gap-2">
+            <div className="w-8 h-8 bg-indigo-600 rounded-lg"></div> LinkEase
+          </div>
+
+          <div className="space-y-1">
+            <div className="flex items-center gap-3 px-3 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium">
+              <FolderPlus className="w-4 h-4" /> All Sessions
+            </div>
+            <div className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm font-medium">
+              <Copy className="w-4 h-4" /> Favorites
+            </div>
+            <div className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm font-medium">
+              <Trash2 className="w-4 h-4" /> Trash
             </div>
           </div>
-          <div className="flex gap-1.5 sm:gap-2">
-            <span className="w-3 h-3 rounded-full bg-red-500"></span>
-            <span className="w-3 h-3 rounded-full bg-yellow-400"></span>
-            <span className="w-3 h-3 rounded-full bg-green-500"></span>
+
+          <div className="mt-8 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Recent Folders</div>
+          <div className="space-y-1">
+            <div className="flex items-center gap-2 px-3 py-2 text-gray-600 text-sm">
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div> Project X Research
+            </div>
+            <div className="flex items-center gap-2 px-3 py-2 text-gray-600 text-sm">
+              <div className="w-2 h-2 rounded-full bg-purple-500"></div> Holiday Shopping
+            </div>
           </div>
         </div>
 
-        {/* Search Bar */}
-        <div className="flex items-center gap-2 sm:gap-3 bg-white border border-gray-200 px-3 sm:px-4 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl mb-4 sm:mb-7">
-          <svg className="flex-shrink-0" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7" cy="7" r="5" stroke="#999" strokeWidth="1.5"/>
-            <path d="M11 11L14 14" stroke="#999" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-          <input 
-            type="text" 
-            placeholder="Search your links..." 
-            className="flex-1 outline-none text-xs sm:text-sm bg-transparent"
-          />
-          <span className="bg-gray-100 border border-gray-200 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded text-xs text-gray-500 font-semibold hidden sm:inline">⌘K</span>
-        </div>
+        {/* Main Content */}
+        <div className="flex-1 p-6 bg-white overflow-hidden relative">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-xl font-bold text-gray-800">My Saved Sessions</h2>
+            <div className="flex gap-2">
+              <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium shadow-sm flex items-center gap-2">
+                <Plus className="w-4 h-4" /> Save Current Tabs
+              </button>
+            </div>
+          </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-5 mb-5 sm:mb-8">
-          {categories.map((category, index) => (
-            <div 
-              key={index}
-              className="tooltip group bg-white border border-gray-200/60 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-gray-300/80 shadow-sm hover:bg-gradient-to-br hover:from-white hover:to-gray-50"
-              data-tooltip={`View all ${category.title}`}
-            >
-              <div className="flex justify-between items-center mb-2 sm:mb-3">
-                <span className="text-xl sm:text-2xl lg:text-3xl transform group-hover:scale-110 transition-transform duration-300">{category.icon}</span>
-                <span className={`${category.badgeColor} text-white px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg text-xs font-semibold shadow-sm group-hover:shadow-md transition-shadow`}>
-                  {category.badge}
-                </span>
+          {/* Session Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Session Card 1 */}
+            <div className="p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+              <div className="flex justify-between items-start mb-3">
+                <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                  <FolderPlus className="w-6 h-6" />
+                </div>
+                <span className="text-xs text-gray-400">2 mins ago</span>
               </div>
-              <h4 className="text-xs sm:text-sm lg:text-[15px] font-semibold text-gray-900 mb-1 sm:mb-1.5 group-hover:text-primary-purple transition-colors">{category.title}</h4>
-              <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">{category.links}</p>
-              <div className="w-full h-1 sm:h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                <div className={`${category.progressColor} h-full rounded-full transition-all duration-500 group-hover:w-full`} style={{ width: '70%' }}></div>
+              <h3 className="font-semibold text-gray-800 mb-1">Research: AI Tools</h3>
+              <p className="text-xs text-gray-500 mb-4">12 tabs saved • Chrome</p>
+              <div className="flex -space-x-2 overflow-hidden">
+                <div className="w-6 h-6 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-[10px]">G</div>
+                <div className="w-6 h-6 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-[10px]">T</div>
+                <div className="w-6 h-6 rounded-full bg-red-100 border-2 border-white flex items-center justify-center text-[10px]">Y</div>
+                <div className="w-6 h-6 rounded-full bg-gray-50 border-2 border-white flex items-center justify-center text-[10px] text-gray-500">+9</div>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Stats */}
-        <div className="flex flex-col sm:flex-row justify-around items-center pt-4 sm:pt-7 border-t border-gray-900/8 gap-3 sm:gap-0">
-          <div className="text-center w-full sm:w-auto">
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-0.5 sm:mb-1 whitespace-nowrap">128</h3>
-            <p className="text-xs sm:text-sm text-gray-500 font-medium whitespace-nowrap">Total Links</p>
-          </div>
-          <div className="hidden sm:block w-px h-12 bg-gray-900/8"></div>
-          <div className="text-center w-full sm:w-auto">
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-0.5 sm:mb-1 whitespace-nowrap">6</h3>
-            <p className="text-xs sm:text-sm text-gray-500 font-medium whitespace-nowrap">Categories</p>
-          </div>
-          <div className="hidden sm:block w-px h-12 bg-gray-900/8"></div>
-          <div className="text-center w-full sm:w-auto">
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-0.5 sm:mb-1 whitespace-nowrap">94%</h3>
-            <p className="text-xs sm:text-sm text-gray-500 font-medium whitespace-nowrap">Organized</p>
+            {/* Session Card 2 */}
+            <div className="p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+              <div className="flex justify-between items-start mb-3">
+                <div className="p-2 bg-purple-50 rounded-lg text-purple-600">
+                  <FolderPlus className="w-6 h-6" />
+                </div>
+                <span className="text-xs text-gray-400">Yesterday</span>
+              </div>
+              <h3 className="font-semibold text-gray-800 mb-1">Gift Ideas 2024</h3>
+              <p className="text-xs text-gray-500 mb-4">24 tabs saved • Mobile</p>
+              <div className="flex -space-x-2 overflow-hidden">
+                <div className="w-6 h-6 rounded-full bg-orange-100 border-2 border-white flex items-center justify-center text-[10px]">A</div>
+                <div className="w-6 h-6 rounded-full bg-green-100 border-2 border-white flex items-center justify-center text-[10px]">E</div>
+                <div className="w-6 h-6 rounded-full bg-gray-50 border-2 border-white flex items-center justify-center text-[10px] text-gray-500">+21</div>
+              </div>
+            </div>
+
+            {/* Session Card 3 */}
+            <div className="p-4 rounded-xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow group cursor-pointer border-dashed">
+              <div className="h-full flex flex-col items-center justify-center text-center p-4">
+                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center mb-3">
+                  <Copy className="w-6 h-6 text-gray-400" />
+                </div>
+                <h3 className="font-medium text-gray-600">Import from Clipboard</h3>
+                <p className="text-xs text-gray-400 mt-1">Paste JSON data</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
