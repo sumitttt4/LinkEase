@@ -28,6 +28,7 @@
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
+    --grid-color: #e2e8f0;
   }
 
   .dark {
@@ -50,6 +51,7 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+    --grid-color: rgba(255, 255, 255, 0.1);
   }
 
   * {
@@ -66,6 +68,15 @@
   background-image: radial-gradient(hsl(var(--foreground)) 1px, transparent 1px);
   background-size: 24px 24px;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+}
+
+.bg-grid-fade {
+  background-image:
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: 20px 30px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%);
 }
 
 /* Original Styles Preserved */
